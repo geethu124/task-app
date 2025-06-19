@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "2f46db42-8daf-448e-9802-97ecf7098787",
+		"name": "task app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45937499"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Geethu\",\r\n  \"email\": \"yolamol309@hosliy.com\",\r\n  \"password\": \"task123\",\r\n  \"password_confirmation\": \"task123\",\r\n  \"is_admin\": \"0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8184/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8184",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"admin@task.com\",\r\n  \"password\": \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8184/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8184",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "13|2MgRvjPtYxR0C3gVUhEi3oRfM3O3nXFZGRbOIBPO62f710c5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"tesk3\",\r\n  \"description\": \"test\",\r\n  \"due_date\": \"2025-06-20 15:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8184/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8184",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assign",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "13|2MgRvjPtYxR0C3gVUhEi3oRfM3O3nXFZGRbOIBPO62f710c5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user_id\": 8\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8184/api/tasks/15/assign",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8184",
+					"path": [
+						"api",
+						"tasks",
+						"15",
+						"assign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "complete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "13|2MgRvjPtYxR0C3gVUhEi3oRfM3O3nXFZGRbOIBPO62f710c5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "method",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8184/api/tasks/4/complete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8184",
+					"path": [
+						"api",
+						"tasks",
+						"4",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "13|2MgRvjPtYxR0C3gVUhEi3oRfM3O3nXFZGRbOIBPO62f710c5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8184/api/tasks?status=completed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8184",
+					"path": [
+						"api",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "completed"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
