@@ -14,6 +14,12 @@ class Task extends Model
         'status',
         'due_date',
     ];
+
+    protected $casts = [
+    'due_date' => 'datetime',
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+];
     public function assignedUser()
     {
         return $this->belongsTo(User::class, 'assigned_to');

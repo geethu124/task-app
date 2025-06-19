@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\TaskService;
 use Illuminate\Http\Request;
+use App\Http\Resources\TaskResource;
 
 class TaskController extends Controller
 {
@@ -26,7 +27,9 @@ class TaskController extends Controller
             'due_date' => 'nullable|date',
         ]);
         $task = $this->taskService->createTask($validated);
-        return response()->json($task, 201);
+        // return response()->json($task, 201);
+         return new TaskResource($task);
+
     }
 
     public function assign(Request $request, $id)
@@ -42,7 +45,9 @@ class TaskController extends Controller
             return response()->json(['message' => 'Task is already assigned to user ID: ' . $task->assigned_to], 400);
         }
             $task = $this->taskService->assignTask($id, $validated['user_id']);
-            return response()->json($task);
+         return new TaskResource($task);
+
+            // return response()->json($task);
     }
 
     public function complete($id)
@@ -52,14 +57,16 @@ class TaskController extends Controller
             return response()->json(['message' => 'Task not found'], 404);
         }
         $task = $this->taskService->completeTask($id);
-        return response()->json($task);
+        // return response()->json($task);
+         return new TaskResource($task);
     }
 
     public function index(Request $request)
     {
         $filters = $request->only(['status', 'assigned_to']);
         $tasks = $this->taskService->listTasks($filters);
-        return response()->json($tasks);
+        // return response()->json($tasks);
+        return TaskResource::collection($tasks);
     }
 }
 
